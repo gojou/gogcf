@@ -1,6 +1,6 @@
 package main
 
-// TODO: 
+// TODO:
 // 1: add support for multiple arguments
 // 2: add support for a single argument to show maximum number pair
 
@@ -15,7 +15,7 @@ import (
 
 func main() {
 
-	arg, err := strconv.Atoi(os.Args[1])
+	[]args, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		fmt.Println("Must enter one or more integers")
 	} else {
