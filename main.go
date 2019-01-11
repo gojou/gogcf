@@ -15,12 +15,13 @@ import (
 
 func main() {
 
-	[]args, err := strconv.Atoi(os.Args[1])
+	args:= os.Args[1:]
+	arg1,err:=strconv.Atoi(args[1])
 	if err != nil {
 		fmt.Println("Must enter one or more integers")
 	} else {
 
-		n := []int{arg}
+		n := []int{arg1}
 		fact(&n)
 
 		fmt.Println(n)
