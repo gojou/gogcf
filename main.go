@@ -4,7 +4,6 @@ package main
 // 1: add support for multiple arguments
 // 2: add support for a single argument to show maximum number pair
 
-
 import (
 	"fmt"
 	"math"
@@ -15,17 +14,20 @@ import (
 
 func main() {
 
-	args:= os.Args[1:]
-	arg1,err:=strconv.Atoi(args[1])
-	if err != nil {
-		fmt.Println("Must enter one or more integers")
-	} else {
+	args := os.Args[1:]
+	//	nums := []int{}
 
-		n := []int{arg1}
-		fact(&n)
-
-		fmt.Println(n)
-
+	for i := 0; i < len(args); i++ {
+		n, err := strconv.Atoi(args[i])
+		if err != nil {
+			fmt.Println("All values must be integers")
+		} else {
+			fmt.Println("Number: ", n)
+			f := []int{n}
+			fact(&f)
+			fmt.Println(f)
+			
+		}
 	}
 }
 
@@ -71,7 +73,7 @@ func getNextTwo(p int, y int) (int, int) {
 		return p, y / p
 
 	} else {
-		for p=getNextPrime(p); y%p != 0; p = getNextPrime(p) {
+		for p = getNextPrime(p); y%p != 0; p = getNextPrime(p) {
 			// Do nothing until a prime divisor is found
 		}
 		return p, y / p
@@ -92,10 +94,10 @@ func getNextTwo(p int, y int) (int, int) {
 func getNextPrime(p int) int {
 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
 		59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
-		 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223,
-		 227}
+		139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223,
+		227}
 
-// TODO: Develop a PANIC for primes out of range
+	// TODO: Develop a PANIC for primes out of range
 
 	el := 0
 
@@ -142,6 +144,7 @@ func commonFactors(s1 []int, s2 []int) []int {
 			s2 = s2[1:]
 		}
 	}
+
 	return s
 
 }
