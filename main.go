@@ -30,6 +30,17 @@ func main() {
 		}
 		fmt.Println(fs)
 	}
+	// SCORE! Now we have a slice of slices that we can scan for commonFactors
+
+
+// This is the idiot code. I hve to parse the sets by two pairs at a time. Parse
+// the first two, get the result, parse the next two. Order won't matter.
+
+	// for i := 0; i < len(fs); i++ {
+	// 	fs[0] = commonFactors(fs[i], fs[i+1])
+	// }
+	// fmt.Println(fs)
+
 }
 
 func fact(f *[]int) {
