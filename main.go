@@ -15,7 +15,7 @@ import (
 func main() {
 
 	args := os.Args[1:]
-	//	nums := []int{}
+	fs := [][]int{}
 
 	for i := 0; i < len(args); i++ {
 		n, err := strconv.Atoi(args[i])
@@ -26,8 +26,9 @@ func main() {
 			f := []int{n}
 			fact(&f)
 			fmt.Println(f)
-			
+			fs = append(fs, f)
 		}
+		fmt.Println(fs)
 	}
 }
 
@@ -52,7 +53,7 @@ func fact(f *[]int) {
 			lpf := (*f)[length-2]  // last prime element
 			*f = (*f)[:length-1]   // truncate last element
 
-			lpf, last = getNextTwo(lpf, last)
+			lpf, last = getNextTwo(lpf, last) // divide last element by last prime factor
 
 			*f = append((*f), lpf, last) // add next prime factor and new last element
 
