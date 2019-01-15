@@ -1,9 +1,5 @@
 package main
 
-// TODO:
-// 1: add support for multiple arguments
-// 2: add support for a single argument to show maximum number pair
-
 import (
 	"fmt"
 	"math"
@@ -22,25 +18,21 @@ func main() {
 		if err != nil {
 			fmt.Println("All values must be integers")
 		} else {
-			fmt.Println("Number: ", n)
 			f := []int{n}
 			fact(&f)
 			fmt.Println(f)
 			fs = append(fs, f)
 		}
-		fmt.Println(fs)
+
 	}
-	// SCORE! Now we have a slice of slices that we can scan for commonFactors
 
-
-// This is the idiot code. I hve to parse the sets by two pairs at a time. Parse
-// the first two, get the result, parse the next two. Order won't matter.
-
-	// for i := 0; i < len(fs); i++ {
-	// 	fs[0] = commonFactors(fs[i], fs[i+1])
-	// }
-	// fmt.Println(fs)
-
+	for len(fs) > 1 {
+		cf := commonFactors(fs[0], fs[1])
+		fs = fs[2:]
+		fs = append(fs, cf)
+	}
+	fmt.Println("Common Prime Factor Set: ", fs[0])
+	fmt.Println("Largest Common Factor: ", fProduct(fs[0]))
 }
 
 func fact(f *[]int) {
