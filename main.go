@@ -11,6 +11,11 @@ import (
 func main() {
 
 	args := os.Args[1:]
+	if len(args) == 0{
+		fmt.Println("Please enter one or more integers")
+
+	} else {
+
 	fs := [][]int{}
 
 	for i := 0; i < len(args); i++ {
@@ -20,7 +25,7 @@ func main() {
 		} else {
 			f := []int{n}
 			fact(&f)
-			fmt.Println(f)
+			fmt.Println("Prime Factor Set: ",f)
 			fs = append(fs, f)
 		}
 
@@ -34,7 +39,7 @@ func main() {
 	fmt.Println("Common Prime Factor Set: ", fs[0])
 	fmt.Println("Largest Common Factor: ", fProduct(fs[0]))
 }
-
+}
 func fact(f *[]int) {
 	length := len(*f)
 	last := (*f)[length-1]
