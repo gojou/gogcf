@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
+	// "math"
 	"os"
 	"sort"
 	"strconv"
@@ -11,34 +11,34 @@ import (
 func main() {
 
 	args := os.Args[1:]
-	if len(args) == 0{
-		fmt.Println("Please enter one or more integers")
+	if len(args) == 0 {
+		fmt.Println("All values must be integers")
 
 	} else {
 
-	fs := [][]int{}
+		fs := [][]int{}
 
-	for i := 0; i < len(args); i++ {
-		n, err := strconv.Atoi(args[i])
-		if err != nil {
-			fmt.Println("All values must be integers")
-		} else {
-			f := []int{n}
-			fact(&f)
-			fmt.Println("Prime Factor Set: ",f)
-			fs = append(fs, f)
+		for i := 0; i < len(args); i++ {
+			n, err := strconv.Atoi(args[i])
+			if err != nil {
+				fmt.Println("All values must be integers")
+			} else {
+				f := []int{n}
+				fact(&f)
+				fmt.Println(f)
+				fs = append(fs, f)
+			}
+
 		}
 
+		for len(fs) > 1 {
+			cf := commonFactors(fs[0], fs[1])
+			fs = fs[2:]
+			fs = append(fs, cf)
+		}
+		fmt.Println("Common Prime Factor Set: ", fs[0])
+		fmt.Println("Largest Common Factor: ", fProduct(fs[0]))
 	}
-
-	for len(fs) > 1 {
-		cf := commonFactors(fs[0], fs[1])
-		fs = fs[2:]
-		fs = append(fs, cf)
-	}
-	fmt.Println("Common Prime Factor Set: ", fs[0])
-	fmt.Println("Largest Common Factor: ", fProduct(fs[0]))
-}
 }
 func fact(f *[]int) {
 	length := len(*f)
@@ -100,31 +100,31 @@ func getNextTwo(p int, y int) (int, int) {
 	return p, np
 }
 
-func getNextPrime(p int) int {
-	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
-		59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
-		139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223,
-		227}
-
-	// TODO: Develop a PANIC for primes out of range
-
-	el := 0
-
-	for i := 0; p >= primes[i]; i++ {
-		el = primes[i+1]
-	}
-	return el
-
-}
-
-func isPrime(value int) bool { // Most basic implementation
-	for i := 2; i <= int(math.Floor(float64(value)/2)); i++ {
-		if value%i == 0 {
-			return false
-		}
-	}
-	return value > 1
-}
+// func getNextPrime(p int) int {
+// 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
+// 		59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
+// 		139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223,
+// 		227}
+//
+// 	// TODO: Develop a PANIC for primes out of range
+//
+// 	el := 0
+//
+// 	for i := 0; p >= primes[i]; i++ {
+// 		el = primes[i+1]
+// 	}
+// 	return el
+//
+// }
+//
+// func isPrime(value int) bool { // Most basic implementation
+// 	for i := 2; i <= int(math.Floor(float64(value)/2)); i++ {
+// 		if value%i == 0 {
+// 			return false
+// 		}
+// 	}
+// 	return value > 1
+// }
 
 func fProduct(s []int) int {
 	var i, n int
